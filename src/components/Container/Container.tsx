@@ -1,5 +1,10 @@
 import React from 'react';
+import { StyledContainer } from './StyledContainer';
 
-export const Container = () => {
-  return <div>Container</div>;
+type ContainerProps = {
+  children: React.ReactNode;
+};
+
+export const Container = ({ children }: ContainerProps) => {
+  return <StyledContainer>{children}</StyledContainer>;
 };

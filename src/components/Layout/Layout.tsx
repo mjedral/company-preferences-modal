@@ -3,11 +3,11 @@ import { StyledLayout } from './StyledLayout';
 
 // TODO: remove unneccessary props
 
-type Props = {
-  children?: any;
+type LayoutProps = {
+  children?: React.ReactNode;
   className?: string;
 };
 
-export const Layout: React.FC = ({ children, className }: Props) => {
+export const Layout: React.FC = ({ children, className }: LayoutProps) => {
   return <StyledLayout className={className}>{children}</StyledLayout>;
 };
