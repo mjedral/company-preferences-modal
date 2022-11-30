@@ -1,22 +1,26 @@
 import React, { useContext, useMemo } from 'react';
 
-export const ModalContext = React.createContext<{ closeModal: () => void } | null>(null);
+export const ModalContext = React.createContext<{ close: () => void; open: () => void } | null>(
+  null,
+);
 
 export const useModal = () => {
   return useContext(ModalContext);
 };
 
 type ModalContextProps = {
-  closeModal: () => void;
+  close: () => void;
+  open: () => void;
   children: React.ReactNode;
 };
 
-export const ModalContextProvider = ({ closeModal, children }: ModalContextProps) => {
+export const ModalContextProvider = ({ close, open, children }: ModalContextProps) => {
   const context = useMemo(() => {
     return {
-      closeModal,
+      close,
+      open,
     };
-  }, [closeModal]);
+  }, [close, open]);
 
   ModalContext.Provider;
 
