@@ -4,8 +4,13 @@ import { StyledButton } from './StyledButton';
 type ButtonProps = {
   children: React.ReactText;
   width?: string;
+  call?: () => void;
 };
 
-export const Button = ({ children, width }: ButtonProps) => {
-  return <StyledButton style={{ width }}>{children}</StyledButton>;
+export const Button = ({ children, width, call }: ButtonProps) => {
+  return (
+    <StyledButton style={{ width }} onClick={call}>
+      {children}
+    </StyledButton>
+  );
 };

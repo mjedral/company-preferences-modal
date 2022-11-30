@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { px } from '../../tools/css';
 
-export const StyledCloseButton = styled.a`
+export const StyledCloseButton = styled.button`
   position: absolute;
   right: 34.5%;
   display: 'flex';

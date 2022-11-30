@@ -15,8 +15,13 @@ import { theme } from './consts/theme/theme';
 import circle from './assets/icons/circle.svg';
 import { ModalContainer } from './components/Modal/ModalContainer/ModalContainer';
 import { CloseButton } from './components/Modal/CloseButton';
+import useModal from './hooks/useModal';
 
 function App() {
+  const { isOpen, toggle } = useModal();
+
+  console.log('App', isOpen);
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
@@ -34,19 +39,21 @@ function App() {
               <span>You don’t have any preferences chosen.</span>
             </Description>
           </Label>
-          <Button>Add preferences</Button>
+          <Button call={toggle}>Add preferences</Button>
         </Container>
-        <ModalContainer>
-          <span>Edit user’s privileges for a company</span>
-          <CloseButton />
-          <Label text={'Selected company'}>
-            <Description>
-              <GreenCircle src={circle} alt='green circle' />
-              <CompanyNumber>1-2300423445</CompanyNumber>
-              <CompanyName>Flying Bisons</CompanyName>
-            </Description>
-          </Label>
-        </ModalContainer>
+        {isOpen ? (
+          <ModalContainer>
+            <span>Edit user’s privileges for a company</span>
+            <CloseButton />
+            <Label text={'Selected company'}>
+              <Description>
+                <GreenCircle src={circle} alt='green circle' />
+                <CompanyNumber>1-2300423445</CompanyNumber>
+                <CompanyName>Flying Bisons</CompanyName>
+              </Description>
+            </Label>
+          </ModalContainer>
+        ) : null}
       </Layout>
     </ThemeProvider>
   );
