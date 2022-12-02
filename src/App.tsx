@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Button } from './components/Button/Button';
 import {
@@ -18,16 +18,15 @@ import { CloseButton } from './components/Modal/CloseButton';
 import useModal from './hooks/useModal';
 import { ModalContextProvider } from './contexts/ModalContext';
 
-function App() {
-  const { isOpen, toggle } = useModal();
+function App(){
 
-  console.log('App', isOpen);
+  const { isOpen, closeModal, openModal} = useModal()
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Layout>
-        <ModalContextProvider>
+        <ModalContextProvider close={closeModal} open={openModal}>
           <Container>
             <Label text={'Selected company'}>
               <Description>
@@ -41,7 +40,7 @@ function App() {
                 <span>You don’t have any preferences chosen.</span>
               </Description>
             </Label>
-            <Button call={toggle}>Add preferences</Button>
+            <Button call={openModal}>Add preferences</Button>
           </Container>
           {isOpen ? (
             <ModalContainer>

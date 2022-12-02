@@ -1,13 +1,12 @@
 import React from 'react';
 import { StyledCloseButton, StyledCloseIcon } from './StyledCloseButton';
 import closeIcon from '../../assets/icons/close.svg';
-import useModal from '../../hooks/useModal';
+import { useModalContext } from '../../contexts/ModalContext';
 
 export const CloseButton = () => {
-  const { isOpen, toggle } = useModal();
-  console.log(isOpen);
+  const { close } = useModalContext();
   return (
-    <StyledCloseButton onClick={toggle}>
+    <StyledCloseButton onClick={close}>
       <StyledCloseIcon src={closeIcon} alt='close icon' />
     </StyledCloseButton>
   );
